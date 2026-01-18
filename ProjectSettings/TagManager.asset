@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Pellet
+  - Bug
   layers:
   - Default
   - TransparentFX

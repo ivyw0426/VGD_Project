@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -15f;
     public float jumpHeight = 1f;
 
+    public BugManager bM;
     public KeyCode sprintKey = KeyCode.LeftShift;
     
     public Transform groundCheck;
@@ -41,6 +42,16 @@ public class PlayerMovement : MonoBehaviour
         } else
         {
             state = MovementState.air;
+        }
+    }
+    //handling collision with bugs
+    private void OnTriggerEnter(Collider other)
+    { 
+        if (other.CompareTag("Bug"))
+        {
+            Destroy(other.gameObject);
+            //add bugs collected
+            bM.bugCount++;
         }
     }
 
