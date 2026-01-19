@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -15f;
     public float jumpHeight = 1f;
 
-    public BugManager bM;
+    public BugManager bugManager;
+    public AudioManager audioManager;
     public KeyCode sprintKey = KeyCode.LeftShift;
     
     public Transform groundCheck;
@@ -30,6 +31,10 @@ public class PlayerMovement : MonoBehaviour
         air
     }
 
+    private void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
     private void StateHandler()
     {
         if(isGrounded && Input.GetKey(sprintKey))
@@ -49,9 +54,10 @@ public class PlayerMovement : MonoBehaviour
     { 
         if (other.CompareTag("Bug"))
         {
-            Destroy(other.gameObject);
+            //audioManager.PlaySFX(audioManager.bug);
+            //Destroy(other.gameObject);
             //add bugs collected
-            bM.bugCount++;
+            bugManager.bugCount++;
         }
     }
 
