@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 3f;
     public float sprintSpeed = 6f;
     public float gravity = -15f;
+    public bool hasAntivirus;
 
     public BugManager bugManager;
     public AudioManager audioManager;
@@ -49,8 +50,8 @@ public class PlayerMovement : MonoBehaviour
     { 
         if (other.CompareTag("Bug"))
         {
-            //audioManager.PlaySFX(audioManager.bug);
-            //Destroy(other.gameObject);
+            audioManager.PlaySFX(audioManager.bug);
+            Destroy(other.gameObject);
             //add bugs collected
             bugManager.bugCount++;
         }
