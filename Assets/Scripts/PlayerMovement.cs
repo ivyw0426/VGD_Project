@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed = 3f;
     public float sprintSpeed = 6f;
     public float gravity = -15f;
-    public float jumpHeight = 1f;
 
     public BugManager bugManager;
     public AudioManager audioManager;
@@ -27,8 +26,7 @@ public class PlayerMovement : MonoBehaviour
     public enum MovementState
     {
         walking,
-        sprinting,
-        air
+        sprinting
     }
 
     private void Awake()
@@ -44,9 +42,6 @@ public class PlayerMovement : MonoBehaviour
         } else if (isGrounded){
             state = MovementState.walking;
             moveSpeed = walkSpeed;
-        } else
-        {
-            state = MovementState.air;
         }
     }
     //handling collision with bugs
@@ -76,11 +71,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * moveSpeed * Time.deltaTime);
-
-        if(Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
 
         velocity.y += gravity * Time.deltaTime;
 
